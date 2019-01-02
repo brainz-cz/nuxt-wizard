@@ -1,0 +1,15 @@
+{
+  "name": "nuxt-cli",
+  "version": "1.0.0",
+  "description": "Command-line interface for creating and managing Nuxt projects",
+  "main": "index.js",
+  "author": "Filip Novotný <filip@novotny.je>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "prompt-checkbox": "^2.2.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
