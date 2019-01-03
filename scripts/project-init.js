@@ -61,19 +61,11 @@ const init = async (options) => {
 const runYarn = async (folder) => {
   const ls = spawn('yarn', { cwd: folder })
 
-  // ls.stdout.on('data', (data) => {
-  //   console.log(`stdout: ${data}`)
-  // })
-
-  // ls.stderr.on('data', (data) => {
-  //   console.log(`stderr: ${data}`)
-  // })
-
   await new Promise((resolve) => {
     ls.on('close', (code) => {
-      resolve(console.log('ls close'))
+      resolve()
     })
   })
 }
 
-module.exports = { init }
+module.exports = init
