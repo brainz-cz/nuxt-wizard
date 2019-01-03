@@ -14,7 +14,8 @@ module.exports = async (projectName) => {
         'headroom',
         'heroku-postbuild',
         'i18n',
-        'sass-boilerplate'
+        'sass-boilerplate',
+        'webfontloader' //plugin lazyloading fonts
       ],
       default: ['babel', 'eslint', 'sass-boilerplate']
     })
