@@ -16,6 +16,9 @@ const init = async (options) => {
   const name = options.name
   const modules = options.modules
 
+  json.name = name
+  json.description = name
+
   if(modules.includes('babel')) {
 
     if(modules.includes('eslint')) {
@@ -53,7 +56,7 @@ const init = async (options) => {
 
   }
 
-  fs.writeFileSync(name + '/package.json', JSON.stringify(json))
+  fs.writeFileSync(name + '/package.json', JSON.stringify(json, null, 4))
 
   return await runYarn(name)
 }
