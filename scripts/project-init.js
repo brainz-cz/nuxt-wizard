@@ -31,8 +31,7 @@ const init = async (options) => {
     })
   })
 
-  // return await runYarn(name)
-  return true
+  return await runYarn(name)
 }
 
 const runYarn = async (folder) => {
