@@ -7,17 +7,19 @@ module.exports = async (projectName) => {
       name: 'modules',
       message: chalk.yellow('Select modules to install'),
       choices: [
+        'axios',
         'babel',
         'gtm',
         'eslint',
+        'event-bus',
         'filters',
         'headroom',
         'heroku-postbuild',
         'i18n',
         'sass-boilerplate',
-        'webfontloader' //plugin lazyloading fonts
+        'webfont-loader'
       ],
-      default: ['babel', 'eslint', 'sass-boilerplate']
+      default: ['axios', 'babel', 'eslint', 'sass-boilerplate']
     })
 
     prompt.ask((answers) => {
