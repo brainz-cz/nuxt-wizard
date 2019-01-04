@@ -1,0 +1,29 @@
+{
+  "name": "<%= name %>",
+  "version": "1.0.0",
+  "description": "<%= name %>",
+  "author": "",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"<% if (modules.includes('eslint')) { %>,
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "yarn run lint"<% } %><% if (modules.includes('heroku-postbuild')) { %>,
+    "heroku-postbuild": "yarn run build"<% } %>
+  },
+  "dependencies": {
+    "nuxt": "*"
+  },
+  "devDependencies": {
+    "node-sass": "*",
+    "sass-loader": "*"<% if (modules.includes('eslint')) { %>,
+    "eslint": "*",
+    "eslint-loader": "*",
+    "eslint-plugin-vue": "*"<% if (modules.includes('babel')) { %>,
+    "babel-eslint": "*"<% } %><% } %><% if (modules.includes('filters')) { %>,
+    "vue2-filters": "*"<% } %><% if (modules.includes('headroom')) { %>,
+    "vue-headroom": "*"<% } %><% if (modules.includes('i18n')) { %>,
+    "nuxt-i18n": "*"<% } %>
+  }
+}
