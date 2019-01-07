@@ -8,7 +8,7 @@ export default async ({ app }) => {
       appSection: to.name.replace(/__.*/,'')
     }
 
-    if(!excludedSections.includes(obj.appSection)) {
+    if (!excludedSections.includes(obj.appSection)) {
       setTimeout(() => {
         console.log(obj)
         // dataLayer.push(obj)

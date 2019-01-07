@@ -1,0 +1,15 @@
+$xs: 370;
+$sm: 480;
+$md: 768;
+$lg: 992;
+$xl: 1200;
+$xxl: 1440;
+
+$breakpoints: (
+    xs: $xs,
+    sm: $sm,
+    md: $md,
+    lg: $lg,
+    xl: $xl,
+    xxl: $xxl
+);

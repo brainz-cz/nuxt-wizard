@@ -31,10 +31,10 @@ module.exports = {
   */
   plugins: [<% if (modules.includes('event-bus')) { %>
     '~plugins/eventBus.js',<% } %><% if (modules.includes('filters')) { %>
-    '~plugins/filters.js',<% } %><% if(modules.includes('headroom')) { %>
-    '~plugins/headroom.js',<% } %><% if(modules.includes('scrollto')) { %>
-    { src: '~plugins/scrollto.js', ssr: false },<% } %><% if(modules.includes('gmap')) { %>
-    { src: '~plugins/gmap.js', ssr: false },<% } %><% if(modules.includes('gtm')) { %>
+    '~plugins/filters.js',<% } %><% if (modules.includes('headroom')) { %>
+    '~plugins/headroom.js',<% } %><% if (modules.includes('scrollto')) { %>
+    { src: '~plugins/scrollto.js', ssr: false },<% } %><% if (modules.includes('gmap')) { %>
+    { src: '~plugins/gmap.js', ssr: false },<% } %><% if (modules.includes('gtm')) { %>
     { src: '~plugins/gtm.js' },
     { src: '~plugins/gtm-pageview.js', ssr: false },<% } %>
   ],
@@ -44,7 +44,26 @@ module.exports = {
   */
   modules: [<% if (modules.includes('axios')) { %>
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',<% } %>
+    '@nuxtjs/axios',<% } %><% if (modules.includes('i18n')) { %>
+    ['nuxt-i18n', {
+      locales: [{
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        file: 'en.json'
+      }],
+      lazy: true,
+      langDir: 'locales/',
+      defaultLocale: 'en',
+      parsePages: false,
+      detectBrowserLanguage: true,
+      pages: [
+        index: {
+            en: '/'
+        }
+      ]
+    }]<% } %><% if (modules.includes('scss-boilerplate')) { %>
+    ['nuxt-sass-resources-loader', '@/assets/scss/global.scss']<% }%>
   ],<% if (modules.includes('axios')) { %>
   /*
   ** Axios module configuration

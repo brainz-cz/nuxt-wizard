@@ -16,10 +16,10 @@ module.exports = async (projectName) => {
         'headroom',
         'heroku-postbuild',
         'i18n',
-        'sass-boilerplate',
+        'scss-boilerplate',
         'webfont-loader'
       ],
-      default: ['axios', 'babel', 'eslint', 'sass-boilerplate']
+      default: ['axios', 'babel', 'eslint', 'scss-boilerplate']
     })
 
     prompt.ask((answers) => {

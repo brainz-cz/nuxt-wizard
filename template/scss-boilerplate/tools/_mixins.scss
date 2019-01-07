@@ -1,0 +1,205 @@
+// Media query according to breakpoints declared in settings/breakpoints
+@mixin mq($break, $reverse: false) {
+    @if $reverse {
+        @media only screen and (max-width: #{$break - 1}px) {
+            @content;
+        }
+    }
+    @else {
+        @media only screen and (min-width: #{$break}px) {
+            @content;
+        }
+    }
+}
+
+// Image replacement using the Scott Kellum method
+// http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
+@mixin image-replacement {
+    text-indent: 200%;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+// Cover element with background image
+@mixin image-cover {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+// Contain background image inside element
+@mixin image-contain {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+// Cover parent with element
+@mixin overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+// Cover parent with pseudo-element
+@mixin pseudo-overlay {
+    content: "";
+    @include overlay;
+}
+
+// Absolutely center element in parent
+@mixin center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// Effectively remove element from page
+@mixin hide {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+// Flex IE 11 fix
+// "flex: 1" gets interpreted as "flex: 1 0 auto" instead of standard
+// "flex 1 auto", this mixin fixes this inconsistency
+// WARNING: This fix is not universal and requires testing, "flex: 1 0 auto"
+// sometimes is the correct behavior
+@mixin flex($grow) {
+    flex: $grow;
+    -ms-flex: $grow 1 auto;
+}
+
+// Clearfix (supports IE 8+)
+@mixin clearfix {
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// Fix blurred or flickering transition effect
+// The perspective method is useful when transform is already applied
+@mixin transition-fix($perspective: false) {
+    @if $perspective {
+        perspective: 1000;
+    }
+    @else {
+        backface-visibility: hidden;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+// Set padding-top based on intended width/height ratio
+// "responsive-ratio(16, 9)" => "padding-top: 56.25%"
+@mixin responsive-ratio($x,$y) {
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+    padding-top: $padding;
+}
+
+// Create a triangle using borders
+@mixin triangle($color, $direction, $size: 6px, $round: false){
+    width: 0;
+    height: 0;
+    @if $round {
+        border-radius: 3px;
+    }
+    @if $direction == down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round( $size / 2.5 );
+    }
+    @else if $direction == up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round( $size / 2.5 );
+    }
+    @else if $direction == right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    }
+    @else if  $direction == left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+
+// Set placeholder styles for all browsers
+@mixin placeholder {
+
+    &.placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+// Hover effect for non-touch devices only
+// Prevents sticky hover effects on touch devices
+@mixin mouse-hover {
+    @media (hover: hover), (-ms-high-contrast: none), (-moz-touch-enabled: 0) {
+
+        &:hover {
+            @content;
+        }
+    }
+}
+
+// Opacity hover effect
+@mixin hover-opacity {
+    cursor: pointer;
+    transition: opacity .2s;
+
+    @include mouse-hover {
+        opacity: .8;
+    }
+}
+
+// Apply styles to touch devices only
+@mixin touch {
+    @media (-moz-touch-enabled: 1), (pointer: coarse), (hover: none) {
+        @content;
+    }
+}
+
+// Target IE 11
+@mixin ie11 {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        @content;
+    }
+}
+
+// Target Edge
+@mixin edge {
+    @supports (-ms-ime-align: auto) {
+        @content;
+    }
+}

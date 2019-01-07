@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "<%= name %>",
   "author": "",
+  "license": "MIT",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -26,6 +27,7 @@
     "babel-eslint": "*"<% } %><% } %><% if (modules.includes('filters')) { %>,
     "vue2-filters": "*"<% } %><% if (modules.includes('headroom')) { %>,
     "vue-headroom": "*"<% } %><% if (modules.includes('i18n')) { %>,
-    "nuxt-i18n": "*"<% } %>
+    "nuxt-i18n": "*"<% } %><% if (modules.includes('scss-boilerplate')) { %>,
+    "nuxt-sass-resources-loader": "*"<% } %>
   }
 }

@@ -7,6 +7,7 @@ const { join } = require('path')
 const templateFolder = './template'
 const templateBaseFolder = templateFolder + '/base'
 const templatePluginsFolder = templateFolder + '/plugins'
+const templateScssFolder = templateFolder + '/scss-boilerplate'
 
 const init = async (options) => {
   const name = options.name
@@ -37,8 +38,31 @@ const init = async (options) => {
     if (err) throw err
     copyPluginFiles('README.md', targetPluginsFolder)
 
+    if (modules.includes('event-bus')) {
+      copyPluginFiles('event-bus.js', targetPluginsFolder)
+    }
+
+    if (modules.includes('filters')) {
+      copyPluginFiles('filters.js', targetPluginsFolder)
+    }
+
     if (modules.includes('gtm')) {
       copyPluginFiles(['gtm.js', 'gtm-pageview.js'], targetPluginsFolder)
+    }
+
+    if (modules.includes('headroom')) {
+      copyPluginFiles('headroom.js', targetPluginsFolder)
+    }
+  })
+
+  fs.mkdir(name + '/assets', err => {
+    if (err) throw err
+    if (modules.includes('scss-boilerplate')) {
+      const targetScssFolder = name + '/assets/scss'
+      fs.mkdir(targetScssFolder, err => {
+        if (err) throw err
+        copy(templateScssFolder, targetScssFolder)
+      })
     }
   })
 
