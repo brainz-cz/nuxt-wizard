@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "nuxt": "*"<% if (modules.includes('axios')) { %>,
-    "@nuxtjs/axios": "*"<% } %>
+    "@nuxtjs/axios": "*"<% } %><% if (modules.includes('gtm')) { %>,
+    "@nuxtjs/google-tag-manager": "*"<% } %>
   },
   "devDependencies": {
     "node-sass": "*",

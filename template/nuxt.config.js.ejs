@@ -16,6 +16,11 @@ module.exports = {
     ]
   },
 
+  env: {
+    <% if (modules.includes('gtm')) { %>
+    'gtmId': 'GTM-XXXXXXX'<% } %>
+  },
+
   /*
   ** Customize the progress-bar color
   */
@@ -30,7 +35,8 @@ module.exports = {
     '~plugins/headroom.js',<% } %><% if(modules.includes('scrollto')) { %>
     { src: '~plugins/scrollto.js', ssr: false },<% } %><% if(modules.includes('gmap')) { %>
     { src: '~plugins/gmap.js', ssr: false },<% } %><% if(modules.includes('gtm')) { %>
-    { src: '~plugins/gtm.js', ssr: false },<% } %>
+    { src: '~plugins/gtm.js' },
+    { src: '~plugins/gtm-pageview.js', ssr: false },<% } %>
   ],
 
   /*
@@ -38,7 +44,7 @@ module.exports = {
   */
   modules: [<% if (modules.includes('axios')) { %>
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'<% } %>
+    '@nuxtjs/axios',<% } %>
   ],<% if (modules.includes('axios')) { %>
   /*
   ** Axios module configuration
