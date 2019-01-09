@@ -16,8 +16,7 @@ module.exports = async (projectName) => {
         'headroom',
         'heroku-postbuild',
         'i18n',
-        'scss-boilerplate',
-        // 'webfont-loader'
+        'scss-boilerplate'
       ],
       default: ['axios', 'babel', 'eslint', 'scss-boilerplate']
     })

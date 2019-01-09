@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const chalk = require('chalk')
 const clear = require('clear')
 const figlet = require('figlet')
@@ -14,11 +16,9 @@ const modulePrompt = require('./scripts/module-prompt.js')
 const namePrompt = require('./scripts/name-prompt.js')
 const projectInit = require('./scripts/project-init.js')
 
-// const currentDirectory = path.basename(process.cwd())
-
 const run = async () => {
   clear()
-  console.log(chalk.cyan(figlet.textSync('nuxt - cli', { horizontalLayout: 'full' })))
+  console.log(chalk.cyan(figlet.textSync('nuxt-wizard')))
 
   const projectName = await namePrompt()
   await createDirectory(projectName)

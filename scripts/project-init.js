@@ -4,7 +4,7 @@ const fs = require('fs')
 const { copy } = require('fs-extra')
 const { join } = require('path')
 
-const templateFolder = './template'
+const templateFolder = __dirname + '/../template'
 const templateBaseFolder = templateFolder + '/base'
 const templatePluginsFolder = templateFolder + '/plugins'
 const templateScssFolder = templateFolder + '/scss-boilerplate'
@@ -14,8 +14,8 @@ const init = async (options) => {
   const name = options.name
   const modules = options.modules
 
-  const targetFolder = name
-  const targetPluginsFolder = name + '/plugins'
+  const targetFolder = './' + name
+  const targetPluginsFolder = targetFolder + '/plugins'
 
   const copyAdditionalFile = (filename, targetFilename) => {
     fs.copyFile(`${templateAdditionalFolder}/${filename}`, `${targetFolder}/${targetFilename}`, err => {
@@ -26,17 +26,17 @@ const init = async (options) => {
   const json = fs.readFileSync(templateFolder + '/package.json.ejs', 'utf-8')
   const jsonRender = ejs.render(json, { name: name, modules: modules })
 
-  fs.writeFileSync(name + '/package.json', jsonRender)
+  fs.writeFileSync(targetFolder + '/package.json', jsonRender)
 
   const config = fs.readFileSync(templateFolder + '/nuxt.config.js.ejs', 'utf-8')
   const configRender = ejs.render(config, { modules: modules })
 
-  fs.writeFileSync(name + '/nuxt.config.js', configRender)
+  fs.writeFileSync(targetFolder + '/nuxt.config.js', configRender)
 
   fs.readdir(templateBaseFolder, (err, items) => {
     if (err) throw err
     items.forEach((item) => {
-      copy(`${templateBaseFolder}/${item}`, `${name}/${item}`, (err) => {
+      copy(`${templateBaseFolder}/${item}`, `${targetFolder}/${item}`, (err) => {
         if (err) throw err
       })
     })
@@ -63,10 +63,10 @@ const init = async (options) => {
     }
   })
 
-  fs.mkdir(name + '/assets', err => {
+  fs.mkdir(targetFolder + '/assets', err => {
     if (err) throw err
     if (modules.includes('scss-boilerplate')) {
-      const targetScssFolder = name + '/assets/scss'
+      const targetScssFolder = targetFolder + '/assets/scss'
       fs.mkdir(targetScssFolder, err => {
         if (err) throw err
         copy(templateScssFolder, targetScssFolder)

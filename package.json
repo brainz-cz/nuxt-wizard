@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-cli",
-  "version": "1.0.0",
+  "name": "nuxt-wizard",
+  "version": "0.1.0",
   "description": "Command-line interface for creating and managing Nuxt projects",
   "main": "index.js",
   "author": "Filip Novotný <filip@novotny.je>",
@@ -15,5 +15,8 @@
   },
   "scripts": {
     "start": "node index.js"
+  },
+  "bin": {
+    "nuxt-wizard": "./index.js"
   }
 }

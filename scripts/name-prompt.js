@@ -13,7 +13,7 @@ module.exports = async () => {
         if (!answer.match(/^[a-z][a-z0-9\-_]+[a-z0-9]$/)) {
           console.log(chalk.red('Please enter a valid project name (a-z, 0-9, dashes, underscores, 3 chars min)\n'))
           ask()
-        } else if (existsSync(answer)) {
+        } else if (existsSync('./' + answer)) {
           console.log(chalk.red('Directory already exists\n'))
           ask()
         } else {
