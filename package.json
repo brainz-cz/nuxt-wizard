@@ -18,5 +18,10 @@
   },
   "bin": {
     "nuxt-wizard": "./index.js"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brainz-cz/nuxt-wizard.git"
+  },
+  "homepage": "https://github.com/brainz-cz/nuxt-wizard"
 }
