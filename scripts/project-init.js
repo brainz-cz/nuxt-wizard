@@ -8,10 +8,20 @@ const templateFolder = './template'
 const templateBaseFolder = templateFolder + '/base'
 const templatePluginsFolder = templateFolder + '/plugins'
 const templateScssFolder = templateFolder + '/scss-boilerplate'
+const templateAdditionalFolder = templateFolder + '/additional'
 
 const init = async (options) => {
   const name = options.name
   const modules = options.modules
+
+  const targetFolder = name
+  const targetPluginsFolder = name + '/plugins'
+
+  const copyAdditionalFile = (filename, targetFilename) => {
+    fs.copyFile(`${templateAdditionalFolder}/${filename}`, `${targetFolder}/${targetFilename}`, err => {
+      if (err) throw err
+    })
+  }
 
   const json = fs.readFileSync(templateFolder + '/package.json.ejs', 'utf-8')
   const jsonRender = ejs.render(json, { name: name, modules: modules })
@@ -25,15 +35,13 @@ const init = async (options) => {
 
   fs.readdir(templateBaseFolder, (err, items) => {
     if (err) throw err
-    const folders = items.filter(x => fs.lstatSync(`${templateBaseFolder}/${x}`).isDirectory())
-    folders.forEach((folder) => {
-      copy(`${templateBaseFolder}/${folder}`, `${name}/${folder}`, (err) => {
+    items.forEach((item) => {
+      copy(`${templateBaseFolder}/${item}`, `${name}/${item}`, (err) => {
         if (err) throw err
       })
     })
   })
 
-  const targetPluginsFolder = name + '/plugins'
   fs.mkdir(targetPluginsFolder, err => {
     if (err) throw err
     copyPluginFiles('README.md', targetPluginsFolder)
@@ -66,14 +74,26 @@ const init = async (options) => {
     }
   })
 
+  if (modules.includes('i18n')) {
+    copy(templateFolder + '/locales', targetFolder + '/locales')
+  }
+
+  if (modules.includes('babel')) {
+    copyAdditionalFile('babelrc', '.babelrc')
+  }
+
+  if (modules.includes('eslint')) {
+    copyAdditionalFile('eslintrc.js', '.eslintrc.js')
+  }
+
   return await runYarn(name)
 }
 
-const copyPluginFiles = (filenames, targetFolder) => {
+const copyPluginFiles = (filenames, folder) => {
   if (!Array.isArray(filenames)) filenames = [filenames]
 
   filenames.forEach(filename => {
-    fs.copyFile(`${templatePluginsFolder}/${filename}`, `${targetFolder}/${filename}`, err => {
+    fs.copyFile(`${templatePluginsFolder}/${filename}`, `${folder}/${filename}`, err => {
       if (err) throw err
     })
   })

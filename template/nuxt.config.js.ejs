@@ -16,8 +16,7 @@ module.exports = {
     ]
   },
 
-  env: {
-    <% if (modules.includes('gtm')) { %>
+  env: {<% if (modules.includes('gtm')) { %>
     'gtmId': 'GTM-XXXXXXX'<% } %>
   },
 
@@ -30,7 +29,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [<% if (modules.includes('event-bus')) { %>
-    '~plugins/eventBus.js',<% } %><% if (modules.includes('filters')) { %>
+    '~plugins/event-bus.js',<% } %><% if (modules.includes('filters')) { %>
     '~plugins/filters.js',<% } %><% if (modules.includes('headroom')) { %>
     '~plugins/headroom.js',<% } %><% if (modules.includes('scrollto')) { %>
     { src: '~plugins/scrollto.js', ssr: false },<% } %><% if (modules.includes('gmap')) { %>
@@ -57,12 +56,12 @@ module.exports = {
       defaultLocale: 'en',
       parsePages: false,
       detectBrowserLanguage: true,
-      pages: [
+      pages: {
         index: {
             en: '/'
         }
-      ]
-    }]<% } %><% if (modules.includes('scss-boilerplate')) { %>
+      }
+    }],<% } %><% if (modules.includes('scss-boilerplate')) { %>
     ['nuxt-sass-resources-loader', '@/assets/scss/global.scss']<% }%>
   ],<% if (modules.includes('axios')) { %>
   /*
