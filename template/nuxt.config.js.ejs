@@ -62,13 +62,16 @@ module.exports = {
         }
       }
     }],<% } %><% if (modules.includes('scss-boilerplate')) { %>
-    ['nuxt-sass-resources-loader', '@/assets/scss/global.scss']<% }%>
+    ['@nuxtjs/style-resources']<% }%>
   ],<% if (modules.includes('axios')) { %>
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },<% } %><% if (modules.includes('scss-boilerplate')) { %>
+  styleResources: {
+    sass: ['@/assets/scss/global.scss']
   },<% } %>
 
   /*
