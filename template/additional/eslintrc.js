@@ -19,10 +19,11 @@ module.exports = {
   // add your custom rules here
   rules: {
     "vue/component-name-in-template-casing": [
-      "error",
+      "warn",
       "PascalCase",
       {
         "ignores": [
+          "no-ssr",
           "nuxt",
           "nuxt-child",
           "nuxt-link"
