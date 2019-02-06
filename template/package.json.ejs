@@ -19,7 +19,11 @@
     "@nuxtjs/google-tag-manager": "*"<% } %>
   },
   "devDependencies": {
-    "node-sass": "*",
+    "node-sass": "*",<% if (modules.includes('babel')) { %>
+    "@nuxt/babel-preset-app": "*",
+    "@babel/plugin-syntax-dynamic-import": "*",
+    "@babel/plugin-transform-regenerator": "*",
+    "@babel/plugin-transform-runtime": "*",<% } %>
     "sass-loader": "*"<% if (modules.includes('eslint')) { %>,
     "eslint": "*",
     "eslint-loader": "*",
