@@ -86,7 +86,7 @@ const init = async (options) => {
     copyAdditionalFile('eslintrc.js', '.eslintrc.js')
   }
 
-  return await runYarn(name)
+  return await runInstall(name)
 }
 
 const copyPluginFiles = (filenames, folder) => {
@@ -99,12 +99,23 @@ const copyPluginFiles = (filenames, folder) => {
   })
 }
 
-const runYarn = async (folder) => {
-  const ls = spawn('yarn', { cwd: folder })
+const runInstall = async (folder) => {
+  const yarnSuccess = await runCommand('yarnd', [], folder)
+  if (!yarnSuccess) {
+    await runCommand('npm', ['install'], folder)
+  }
+  return true
+}
 
-  await new Promise((resolve) => {
+const runCommand = async (cmd, arguments, folder) => {
+  const ls = spawn(cmd, arguments, { cwd: folder })
+
+  return await new Promise((resolve) => {
+    ls.on('error', (error) => {
+      resolve(false)
+    })
     ls.on('close', (code) => {
-      resolve()
+      resolve(true)
     })
   })
 }
