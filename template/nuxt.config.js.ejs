@@ -1,6 +1,6 @@
-const pkg = require('./package')
+import pkg from './package'
 
-module.exports = {
+export default {
   /*
   ** Headers of the page
   */
@@ -78,20 +78,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    <% if (modules.includes('babel')) { %>
-    babel: {
-      presets: [
-        [ '@nuxt/babel-preset-app', {
-            targets: "> 0.25%, not dead"
-          }
-        ]
-      ],
-     plugins: [
-       "@babel/plugin-syntax-dynamic-import",
-       "@babel/plugin-transform-regenerator",
-       "@babel/plugin-transform-runtime",
-     ]
-   },<% } %>
     /*
     ** You can extend webpack config here
     */

@@ -19,14 +19,19 @@
     "@nuxtjs/google-tag-manager": "*"<% } %>
   },
   "devDependencies": {
-    "node-sass": "*",<% if (modules.includes('babel')) { %>
-    "@nuxt/babel-preset-app": "*",
-    "@babel/plugin-syntax-dynamic-import": "*",
-    "@babel/plugin-transform-regenerator": "*",
-    "@babel/plugin-transform-runtime": "*",<% } %>
+    "nodemon": "*",
+    "node-sass": "*",
     "sass-loader": "*"<% if (modules.includes('eslint')) { %>,
+    "@nuxtjs/eslint-config": "*",
     "eslint": "*",
     "eslint-loader": "*",
+    "eslint-config-standard": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "*",
+    "eslint-plugin-node": "*",
+    "eslint-plugin-nuxt": "*",
+    "eslint-plugin-promise": "*",
+    "eslint-plugin-standard": "*",
     "eslint-plugin-vue": "*"<% if (modules.includes('babel')) { %>,
     "babel-eslint": "*"<% } %><% } %><% if (modules.includes('filters')) { %>,
     "vue2-filters": "*"<% } %><% if (modules.includes('headroom')) { %>,

@@ -8,27 +8,10 @@ module.exports = {
     parser: 'babel-eslint'
   },
   extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/strongly-recommended'
-  ],
-  // required to lint *.vue files
-  plugins: [
-    'vue'
+    '@nuxtjs',
+    'plugin:nuxt/recommended'
   ],
   // add your custom rules here
   rules: {
-    "vue/component-name-in-template-casing": [
-      "warn",
-      "PascalCase",
-      {
-        "ignores": [
-          "no-ssr",
-          "nuxt",
-          "nuxt-child",
-          "nuxt-link"
-        ]
-      }
-    ]
   }
 }

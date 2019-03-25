@@ -1,6 +1,6 @@
 {
   "name": "nuxt-wizard",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Command-line interface for creating and managing Nuxt projects",
   "main": "index.js",
   "author": "Filip Novotný <filip@novotny.je>",
