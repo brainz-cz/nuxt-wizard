@@ -100,7 +100,7 @@ const copyPluginFiles = (filenames, folder) => {
 }
 
 const runInstall = async (folder) => {
-  const yarnSuccess = await runCommand('yarnd', [], folder)
+  const yarnSuccess = await runCommand('yarn', [], folder)
   if (!yarnSuccess) {
     await runCommand('npm', ['install'], folder)
   }
