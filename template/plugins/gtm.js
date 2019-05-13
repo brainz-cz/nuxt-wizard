@@ -15,19 +15,20 @@ Vue.mixin({
      */
     gtm(options) {
       if (typeof dataLayer !== 'undefined') {
-
         if (!('event' in options)) {
+          // eslint-disable-next-line no-console
           console.error('[GTM] No event specified', options)
           return
         }
 
         const obj = {
           url: this.$route.path,
-          appSection: this.$route.name.replace(/__.*/,''),
+          appSection: this.$route.name.replace(/__.*/, ''),
           ...options
         }
 
         setTimeout(() => {
+          // eslint-disable-next-line no-console
           console.log(obj)
           // dataLayer.push(obj)
         }, 0)
