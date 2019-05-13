@@ -10,13 +10,16 @@
     "start": "nuxt start",
     "generate": "nuxt generate"<% if (modules.includes('eslint')) { %>,
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "yarn run lint"<% } %><% if (modules.includes('heroku-postbuild')) { %>,
-    "heroku-postbuild": "yarn run build"<% } %>
+    "precommit": "yarn run lint || npm run lint"<% } %><% if (modules.includes('heroku-postbuild')) { %>,
+    "heroku-postbuild": "yarn run build || npm run build"<% } %>
   },
   "dependencies": {
     "nuxt": "*"<% if (modules.includes('axios')) { %>,
     "@nuxtjs/axios": "*"<% } %><% if (modules.includes('gtm')) { %>,
-    "@nuxtjs/google-tag-manager": "*"<% } %>
+    "@nuxtjs/google-tag-manager": "*"<% } %><% if (modules.includes('filters')) { %>,
+      "vue2-filters": "*"<% } %><% if (modules.includes('headroom')) { %>,
+      "vue-headroom": "*"<% } %><% if (modules.includes('i18n')) { %>,
+      "nuxt-i18n": "*"<% } %>
   },
   "devDependencies": {
     "nodemon": "*",
@@ -33,10 +36,7 @@
     "eslint-plugin-promise": "*",
     "eslint-plugin-standard": "*",
     "eslint-plugin-vue": "*"<% if (modules.includes('babel')) { %>,
-    "babel-eslint": "*"<% } %><% } %><% if (modules.includes('filters')) { %>,
-    "vue2-filters": "*"<% } %><% if (modules.includes('headroom')) { %>,
-    "vue-headroom": "*"<% } %><% if (modules.includes('i18n')) { %>,
-    "nuxt-i18n": "*"<% } %><% if (modules.includes('scss-boilerplate')) { %>,
+    "babel-eslint": "*"<% } %><% } %><% if (modules.includes('scss-boilerplate')) { %>,
     "@nuxtjs/style-resources": "*"<% } %>
   }
 }
