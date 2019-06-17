@@ -78,12 +78,11 @@ const init = async (options) => {
     copy(templateFolder + '/locales', targetFolder + '/locales')
   }
 
-  if (modules.includes('babel')) {
-    copyAdditionalFile('babelrc', '.babelrc')
-  }
-
   if (modules.includes('eslint')) {
     copyAdditionalFile('eslintrc.js', '.eslintrc.js')
+  } else if (modules.includes('prettier')) {
+    copyAdditionalFile('eslintrc-prettier.js', '.eslintrc.js')
+    copyAdditionalFile('prettierrc', '.prettierrc')
   }
 
   return await runInstall(name)

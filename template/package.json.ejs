@@ -8,24 +8,27 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"<% if (modules.includes('eslint')) { %>,
+    "generate": "nuxt generate"<% if (modules.includes('eslint') || (modules.includes('prettier'))) { %>,
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "yarn run lint || npm run lint"<% } %><% if (modules.includes('heroku-postbuild')) { %>,
+    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "yarn run lintfix || npm run lintfix"<% } %><% if (modules.includes('heroku-postbuild')) { %>,
     "heroku-postbuild": "yarn run build || npm run build"<% } %>
   },
   "dependencies": {
     "nuxt": "*"<% if (modules.includes('axios')) { %>,
     "@nuxtjs/axios": "*"<% } %><% if (modules.includes('gtm')) { %>,
     "@nuxtjs/google-tag-manager": "*"<% } %><% if (modules.includes('filters')) { %>,
-      "vue2-filters": "*"<% } %><% if (modules.includes('headroom')) { %>,
-      "vue-headroom": "*"<% } %><% if (modules.includes('i18n')) { %>,
-      "nuxt-i18n": "*"<% } %>
+    "vue2-filters": "*"<% } %><% if (modules.includes('headroom')) { %>,
+    "vue-headroom": "*"<% } %><% if (modules.includes('i18n')) { %>,
+    "nuxt-i18n": "*"<% } %><% if (modules.includes('scss-boilerplate')) { %>,
+    "@nuxtjs/style-resources": "*"<% } %>
   },
   "devDependencies": {
     "nodemon": "*",
     "node-sass": "*",
-    "sass-loader": "*"<% if (modules.includes('eslint')) { %>,
+    "sass-loader": "*"<% if (modules.includes('eslint') || modules.includes('prettier')) { %>,
     "@nuxtjs/eslint-config": "*",
+    "babel-eslint": "*",
     "eslint": "*",
     "eslint-loader": "*",
     "eslint-config-standard": "*",
@@ -35,8 +38,9 @@
     "eslint-plugin-nuxt": "*",
     "eslint-plugin-promise": "*",
     "eslint-plugin-standard": "*",
-    "eslint-plugin-vue": "*"<% if (modules.includes('babel')) { %>,
-    "babel-eslint": "*"<% } %><% } %><% if (modules.includes('scss-boilerplate')) { %>,
-    "@nuxtjs/style-resources": "*"<% } %>
+    "eslint-plugin-vue": "*"<% if (modules.includes('prettier')) { %>,
+    "eslint-plugin-prettier": "*",
+    "eslint-config-prettier": "*",
+    "prettier": "*"<% } %><% } %>
   }
 }

@@ -23,12 +23,14 @@ The CLI will lead you through the project scaffolding process.
 Currently, nuxt-wizard offers the following modules:
 
 - [axios](https://www.npmjs.com/package/@nuxtjs/axios)
-- [babel](https://www.npmjs.com/package/babel-eslint)
 - [gtm](https://www.npmjs.com/package/vue-google-tag-manager)
-- [eslint](https://www.npmjs.com/package/eslint-plugin-vue)
 - event-bus
 - [filters](https://www.npmjs.com/package/vue2-filters)
 - [headroom](https://www.npmjs.com/package/vue-headroom)
 - heroku-postbuild
 - [i18n](https://www.npmjs.com/package/nuxt-i18n)
 - scss-boilerplate
+
+Additionaly, these linting options are available:
+- ESLint
+- Prettier
